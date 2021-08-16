@@ -4,7 +4,6 @@
       <div class="product-list" v-for="(item, index) in products" :key="index">
         <span class="name">{{ item.title }}</span>
         <span class="price">￥{{ item.price }}</span>
-        <span class="count">{{ item.count }}件</span>
         <van-button type="primary" size="small" @click="addHandle(item)"
           >加入购物车</van-button
         >

@@ -16,7 +16,7 @@ export const store = createStore<State>({
     // 是否在购物车中已存在
     isInCart(state) {
       return (data: any) => {
-        return state.shoppingCart.findIndex((item) => item.id) > -1
+        return state.shoppingCart.findIndex((item) => item.id === data.id) > -1
           ? true
           : false;
       };

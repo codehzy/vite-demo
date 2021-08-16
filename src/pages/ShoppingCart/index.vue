@@ -1,14 +1,23 @@
 <template>
   <div class="shopping-cart">
     <h2>我的购物车</h2>
-    <div class="product-info" v-for="item in shoppingCart" :key="item">
-      <!-- <span>{{ item.title }}</span> -->
+    <div class="product-info" v-for="item in shoppingCart" :key="item.id">
+      <span>{{ item.title }}</span>
+      <div class="btn-box">
+        <button @click="changeCarCount('reduce', item)">-</button>
+        <span>{{ item.count }}</span>
+        <button @click="changeCarCount('add', item)">+</button>
+      </div>
+      <van-button type="danger" size="small" @click="removeHandle(item)"
+        >删除</van-button
+      >
     </div>
+    <div class="total">总价为: {{ payPrice }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import { useStore } from "@/store/index";
 import { Product } from "@/interface";
 import { toast } from "@/utility/minix";
@@ -16,11 +25,9 @@ export default defineComponent({
   name: "ShoppingCart",
   setup: () => {
     const { state, commit } = useStore();
-
-    const shoppingCart = () => {
+    const shoppingCart = computed(() => {
       return state.shoppingCart;
-    };
-
+    });
     // 更新购物车数量
     const changeCarCount = (type: string, data: Product) => {
       // 保证购物车中最小数量为1
@@ -63,4 +70,6 @@ export default defineComponent({
 });
 </script>
 
-<style lang="sass" scoped></style>
+<style lang="less" scoped>
+@import "./index.less";
+</style>
