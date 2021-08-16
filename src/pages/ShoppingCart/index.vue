@@ -12,7 +12,6 @@
         >删除</van-button
       >
     </div>
-    <div class="total">总价为: {{ payPrice }}</div>
   </div>
 </template>
 
